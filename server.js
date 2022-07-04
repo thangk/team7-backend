@@ -5,7 +5,7 @@ const app = express()
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
-    // res.send('Welcome to Team 7\'s backend')
+    // res.send('Welcome to Team 7\'s backend') test
     res.render('index')
 })
 
