@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id        Int     @id @default(autoincrement())
+  firstName String? @db.VarChar(45)
+  lastName  String? @db.VarChar(45)
+  role      String? @db.VarChar(45)
+  email     String? @db.VarChar(127)
+}
+
+model CartWatch {
+  id    Int   @id @default(autoincrement())
+  cart Cart  @relation(fields: [id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "cartId")
+  watch Watch @relation(fields: [id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "watchId")
+  watchId Int
+  cartId Int
+
+  @@map("cart-watch")
+}
+
+model Cart {
+  id       Int        @id @default(autoincrement())
+  customer Customer   @relation(fields: [id], references: [id], onDelete: Cascade, map: "customerId")
+  customerId Int
+  watches  CartWatch[]
+
+  @@map("carts")
+}
+
+model Customer {
+  id        Int     @id @default(autoincrement())
+  username  String? @db.VarChar(45)
+  password  String? @db.VarChar(127)
+  email     String? @db.VarChar(127)
+  firstName String? @db.VarChar(45)
+  lastName  String? @db.VarChar(45)
+  cart      Cart?   
+  cartId    Int
+
+  @@map("customers")
+}
+
+model Watch {
+  id           Int         @id @default(autoincrement())
+  imageUrl     String?     @db.VarChar(255)
+  price        Decimal?    @db.Decimal(9, 2)
+  brand        String?     @db.VarChar(45)
+  desc         String?     @db.VarChar(511)
+  caseColour   String?     @db.VarChar(45)
+  bandColour   String?     @db.VarChar(45)
+  bandType     String?     @db.VarChar(45)
+  movementType String?     @db.VarChar(45)
+  faceSize     String?     @db.VarChar(45)
+  stock        Int?
+  carts    CartWatch[]
+
+  @@map("watches")
+}

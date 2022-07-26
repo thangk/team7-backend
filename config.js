@@ -5,7 +5,6 @@ const config = {
         password: 'Milkshakes2!',
         database: 'infinity_watches'
     },
-    listPerPage: 10,
 }
 
 module.exports = config;
