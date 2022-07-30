@@ -9,6 +9,9 @@ datasource db {
 
 model Admin {
   id        Int     @id @default(autoincrement())
+  uid      Int?  @unique
+  imageUrl     String?     @db.VarChar(255)
+  imageUpload  String?     @db.VarChar(255)
   firstName String? @db.VarChar(45)
   lastName  String? @db.VarChar(45)
   role      String? @db.VarChar(45)
@@ -40,6 +43,9 @@ model Cart {
 
 model Customer {
   id        Int     @id @default(autoincrement())
+  uid      Int?  @unique
+  imageUrl     String?     @db.VarChar(255)
+  imageUpload  String?     @db.VarChar(255)
   username  String? @db.VarChar(45)
   password  String? @db.VarChar(127)
   email     String? @db.VarChar(127)
@@ -54,6 +60,7 @@ model Customer {
 model Watch {
   id           Int         @id @default(autoincrement())
   imageUrl     String?     @db.VarChar(255)
+  imageUpload  String?     @db.VarChar(255)
   price        Decimal?    @db.Decimal(9, 2)
   brand        String?     @db.VarChar(45)
   desc         String?     @db.VarChar(511)

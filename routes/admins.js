@@ -20,8 +20,6 @@ router.get('/admin-login', async function(req, res, next)  {
 router.get('/admins', async function(req, res, next)  {
     try {
         const admins = await prisma.admin.findMany({
-            include: {
-            }
         })
         res.json(admins);
     } catch (err) {

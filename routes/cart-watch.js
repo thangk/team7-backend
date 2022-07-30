@@ -5,8 +5,6 @@ const prisma = new PrismaClient()
 router.get('/cart-watches', async function(req, res, next)  {
     try {
         const cartWatches = await prisma.cartWatch.findMany({
-            include: {
-            }
         })
         res.json(cartWatches);
     } catch (err) {
@@ -21,8 +19,6 @@ router.get('/cart-watches/:id', async function(req, res, next)  {
             where: {
                 id: Number(req.params.id)
             },
-            include: {
-            }
         })
         res.json(cartWatch);
     } catch (err) {
@@ -50,8 +46,6 @@ router.patch('/cart-watches/:id', async function(req, res, next)  {
                 id: Number(req.params.id)
             },
             data: req.body,
-            include: {
-            }
         })
         res.json(cartWatch);
     } catch (err) {
