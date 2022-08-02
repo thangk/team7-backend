@@ -16,7 +16,7 @@ app.use(express.static("public"));
 // we'll need to change this origin back to netlify's url when we go live which I'll set it up in ENV file
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN
+    origin: 'https://infinitywatches.netlify.app'
   })
 )
 
