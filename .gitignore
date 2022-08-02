@@ -2,3 +2,6 @@ node_modules
 kap_local_backup
 .env
 rest.http
+*.http
+rest.http
+routes/admins.js
