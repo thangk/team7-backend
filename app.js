@@ -5,6 +5,15 @@ const cors = require('cors')
 
 require('dotenv').config();
 
+
+// added by Kap
+// we'll need to change this origin back to netlify's url when we go live which I'll set it up in ENV file
+
+app.use(
+  cors({
+    origin: 'https://infinitywatches.netlify.app'
+  })
+)
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
@@ -12,13 +21,7 @@ app.use(express.static("public"));
 //   res.send({message: "Hello World"});
 // })
 
-// added by Kap
-// we'll need to change this origin back to netlify's url when we go live which I'll set it up in ENV file
-app.use(
-  cors({
-    origin: 'https://infinitywatches.netlify.app'
-  })
-)
+
 
 
 
