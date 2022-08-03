@@ -6,6 +6,7 @@ router.get('/carts', async function(req, res, next)  {
     try {
         const carts = await prisma.cart.findMany({
             include: {
+                watches: true
             }
         })
         res.json(carts);
@@ -22,6 +23,7 @@ router.get('/carts/:id', async function(req, res, next)  {
                 id: Number(req.params.id)
             },
             include: {
+                watches: true
             }
         })
         res.json(cart);
@@ -54,6 +56,23 @@ router.patch('/carts/:id', async function(req, res, next)  {
             }
         })
         res.json(cart);
+    } catch (err) {
+        console.error('Error while updating cart', err.message);
+        next(err);
+    }
+})
+
+router.patch('/carts/purchase/:id', async function(req, res, next)  {
+    try {
+        const cartWatches = await prisma.cartWatch.updateMany({
+            where: {
+                cartId: Number(req.params.id),
+            },
+            data: {
+                isInCart: false,
+            }
+        })
+        res.json(cartWatches);
     } catch (err) {
         console.error('Error while updating cart', err.message);
         next(err);

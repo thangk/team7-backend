@@ -68,6 +68,10 @@ GET http://localhost:3000/customers
 
 ###
 
+GET http://localhost:3000/customers/1
+
+###
+
 POST http://localhost:3000/carts
 Content-Type: application/json
 
@@ -77,14 +81,18 @@ Content-Type: application/json
 
 ###
 
+PATCH http://localhost:3000/carts/purchase/1
+
+###
+
 POST http://localhost:3000/customers
 Content-Type: application/json
 
 {
-    "firstName": "New",
+    "firstName": "Second",
     "lastName": "Customer",
-    "email": "newCustomer@gmail.com",
-    "username": "newCustomer",
+    "email": "secondCustomer@gmail.com",
+    "username": "secondCustomer",
     "password": "password"
 }
 
@@ -94,6 +102,7 @@ POST http://localhost:3000/cart-watches
 Content-Type: application/json
 
 {
-    "cartId": 3,
-    "watchId": 3
+    "cartId": 1,
+    "watchId": 1
 }
+
