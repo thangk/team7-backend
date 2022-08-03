@@ -11,12 +11,12 @@ model Admin {
   id        Int     @id @default(autoincrement())
   uid      Int?  @unique
   imageUrl     String?     @db.VarChar(255)
-  imageUpload  String?     @db.VarChar(255)
+  imageUpload  String?     @db.MediumText   // modified by Kap
   firstName String? @db.VarChar(45)
   lastName  String? @db.VarChar(45)
   role      String? @db.VarChar(45)
-  email     String? @db.VarChar(127)
-  username  String @db.VarChar(45)
+  email     String @db.VarChar(127)
+  // username  String @db.VarChar(45)   we're not using usernames anymore, just email
   password  String @db.VarChar(127)
 
   @@map("admins")
@@ -45,22 +45,25 @@ model Customer {
   id        Int     @id @default(autoincrement())
   uid      Int?  @unique
   imageUrl     String?     @db.VarChar(255)
-  imageUpload  String?     @db.VarChar(255)
-  username  String? @db.VarChar(45)
-  password  String? @db.VarChar(127)
-  email     String? @db.VarChar(127)
+  imageUpload  String?     @db.MediumText   // modified by Kap
+  // username  String? @db.VarChar(45) 
+  role      String @db.VarChar(45)     // added by Kap
+  email     String @db.VarChar(127)
+  password  String @db.VarChar(127)
   firstName String? @db.VarChar(45)
   lastName  String? @db.VarChar(45)
   cart      Cart?   
   cartId    Int?
+  orders    Watch[]
 
   @@map("customers")
 }
 
 model Watch {
   id           Int         @id @default(autoincrement())
+  name         String? @db.VarChar(45)      // added by Kap
   imageUrl     String?     @db.VarChar(255)
-  imageUpload  String?     @db.VarChar(255)
+  imageUpload  String?     @db.MediumText   // modified by Kap
   price        Decimal?    @db.Decimal(9, 2)
   brand        String?     @db.VarChar(45)
   desc         String?     @db.VarChar(511)
@@ -70,7 +73,8 @@ model Watch {
   movementType String?     @db.VarChar(45)
   faceSize     String?     @db.VarChar(45)
   stock        Int?
-  carts    CartWatch[]
+  carts        CartWatch[]
+  customerId   Customer    @relation(fields: [id], references: [id])
 
   @@map("watches")
 }
