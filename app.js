@@ -12,7 +12,7 @@ require('dotenv').config();
 
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN_LOCAL
+    origin: process.env.CORS_ORIGIN
   })
 )
 app.use(express.json());

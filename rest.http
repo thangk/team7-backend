@@ -2,7 +2,7 @@
 
 # just a comment
 
-GET http://localhost:4000/watches
+GET http://localhost:4000/customers
 
 ###
 
