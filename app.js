@@ -5,13 +5,14 @@ const cors = require('cors')
 
 require('dotenv').config();
 
+// just a comment
 
 // added by Kap
 // we'll need to change this origin back to netlify's url when we go live which I'll set it up in ENV file
 
 app.use(
   cors({
-    origin: 'https://infinitywatches.netlify.app'
+    origin: process.env.CORS_ORIGIN_LOCAL
   })
 )
 app.use(express.json());

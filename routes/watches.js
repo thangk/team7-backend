@@ -2,6 +2,8 @@ const router = require('express').Router();
 const {PrismaClient} = require('@prisma/client')
 const prisma = new PrismaClient()
 
+// just a comment
+
 router.get('/watches', async function(req, res, next)  {
     try {
         const watches = await prisma.watch.findMany({

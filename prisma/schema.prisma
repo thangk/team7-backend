@@ -79,3 +79,5 @@ model Watch {
 
   @@map("watches")
 }
+
+// just a comment

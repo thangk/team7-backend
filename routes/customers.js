@@ -2,12 +2,15 @@ const router = require('express').Router();
 const {PrismaClient} = require('@prisma/client')
 const prisma = new PrismaClient()
 
+// just a comment
 
 router.get('/login', async function(req, res, next)  {
     try {
         const customer = await prisma.customer.findFirstOrThrow({
             where: {
+                // @ts-ignore
                 username: req.query.username,
+                // @ts-ignore
                 password: req.query.password
             },
             include: {

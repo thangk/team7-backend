@@ -2,6 +2,8 @@ const router = require('express').Router();
 const {PrismaClient} = require('@prisma/client')
 const prisma = new PrismaClient()
 
+// just a comment
+
 router.get('/carts', async function(req, res, next)  {
     try {
         const carts = await prisma.cart.findMany({
@@ -69,6 +71,7 @@ router.patch('/carts/purchase/:id', async function(req, res, next)  {
                 cartId: Number(req.params.id),
             },
             data: {
+                // @ts-ignore
                 isInCart: false,
             }
         })

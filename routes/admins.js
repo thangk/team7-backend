@@ -2,10 +2,13 @@ const router = require('express').Router();
 const {PrismaClient} = require('@prisma/client')
 const prisma = new PrismaClient()
 
+// just a comment
+
 router.get('/admin-login', async function(req, res, next)  {
     try {
         const admin = await prisma.admin.findUnique({
             where: {
+                // @ts-ignore
                 username: req.query.username,
                 password: req.query.password
             }

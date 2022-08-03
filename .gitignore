@@ -1,7 +1,4 @@
-node_modules
-kap_local_backup
-.env
-rest.http
+/node_modules
+/kap_local_backup
+*.env
 *.http
-rest.http
-routes/admins.js
