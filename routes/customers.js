@@ -77,6 +77,7 @@ router.post('/customers', async function(req, res, next)  {
                 cartId: cart.id
             }
         })
+        customer.cartId = cart.id
         res.json(customer);
     } catch (err) {
         console.error('Error while creating customer', err.message);

@@ -26,6 +26,7 @@ model CartWatch {
   id    Int   @id @default(autoincrement())
   cart Cart  @relation(fields: [id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "cartId")
   watch Watch @relation(fields: [id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "watchId")
+  isInCart Boolean @default(true)
   watchId Int
   cartId Int
 
