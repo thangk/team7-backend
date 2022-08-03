@@ -11,7 +11,7 @@ require('dotenv').config();
 
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN
+    origin: 'https://infinitywatches.netlify.app'
   })
 )
 app.use(express.json());
