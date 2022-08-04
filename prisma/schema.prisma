@@ -55,7 +55,6 @@ model Customer {
   lastName  String? @db.VarChar(45)
   cart      Cart?   
   cartId    Int?
-  orders    Watch[]
 
   @@map("customers")
 }
@@ -75,7 +74,6 @@ model Watch {
   faceSize     String?     @db.VarChar(45)
   stock        Int?
   carts        CartWatch[]
-  customerId   Customer    @relation(fields: [id], references: [id])
 
   @@map("watches")
 }
