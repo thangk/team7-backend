@@ -2,3 +2,5 @@
 /kap_local_backup
 *.env
 *.http
+.env
+rest.http
