@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {PrismaClient} = require('@prisma/client')
+const {PrismaClient, Prisma} = require('@prisma/client')
 const prisma = new PrismaClient()
 
 // just a comment
@@ -7,6 +7,22 @@ const prisma = new PrismaClient()
 router.get('/watches', async function(req, res, next)  {
     try {
         const watches = await prisma.watch.findMany({
+            where: {
+                caseColour: {in: req.query.caseColour},
+                brand: {in: req.query.brand},
+                name: {in: req.query.name},
+                bandColour: {in: req.query.bandColour},
+                bandType: {in: req.query.bandType},
+                movementType: {in: req.query.movementType},
+                faceSize: {in: req.query.faceSize},
+                price: {
+                    gt: req.query.minPrice,
+                    lt: req.query.maxPrice
+                }
+            },
+            orderBy: {
+                price: req.query.priceSort
+            },
             include: {
                 carts: true,
             }
