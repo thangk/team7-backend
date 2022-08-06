@@ -9,7 +9,7 @@ router.get('/login', async function(req, res, next)  {
         const customer = await prisma.customer.findFirstOrThrow({
             where: {
                 // @ts-ignore
-                username: req.query.username,
+                email: req.query.email,
                 // @ts-ignore
                 password: req.query.password
             },

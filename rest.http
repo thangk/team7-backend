@@ -49,7 +49,7 @@ GET http://localhost:3000/admins/1
 
 ###
 
-POST http://localhost:3000/admins
+POST http://localhost:4000/admins
 Content-Type: application/json
 
 {
@@ -57,13 +57,12 @@ Content-Type: application/json
     "lastName": "Boss",
     "role": "ceo",
     "email": "boss@gmail.com",
-    "username": "admin",
     "password": "password"
 }
 
 ###
 
-GET http://localhost:3000/login?username=newCustomer&password=password
+GET http://localhost:4000/admin-login?email=boss@gmail.com&password=password
 
 ###
 

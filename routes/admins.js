@@ -6,10 +6,10 @@ const prisma = new PrismaClient()
 
 router.get('/admin-login', async function(req, res, next)  {
     try {
-        const admin = await prisma.admin.findUnique({
+        const admin = await prisma.admin.findFirstOrThrow({
             where: {
                 // @ts-ignore
-                username: req.query.username,
+                email: req.query.email,
                 password: req.query.password
             }
         })
