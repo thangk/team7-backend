@@ -6,7 +6,7 @@ GET http://localhost:4000/customers
 
 ###
 
-GET http://localhost:4000/watches
+GET http://localhost:4000/cart-watches
 
 
 ###
@@ -29,7 +29,14 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:4000/watches/3
+DELETE http://localhost:4000/cart-watches
+Content-Type: application/json
+
+{
+    "cartId": 1,
+    "watchId": 4,
+    "deleteAll": true
+}
 
 ###
 
