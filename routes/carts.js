@@ -66,16 +66,44 @@ router.patch('/carts/:id', async function(req, res, next)  {
 
 router.patch('/carts/purchase/:id', async function(req, res, next)  {
     try {
-        const cartWatches = await prisma.cartWatch.updateMany({
+        // Get the cart that is being purchased
+        const cart = await prisma.cart.findUnique({
             where: {
-                cartId: Number(req.params.id),
+                id: Number(req.params.id),
             },
-            data: {
-                // @ts-ignore
-                isInCart: false,
+            include: {
+                watches: {
+                    where: {
+                        isInCart: true
+                    }
+                }
             }
         })
-        res.json(cartWatches);
+        // For each CartWatch in the cart
+        for (const watch of cart.watches) {
+            console.log(watch)
+            // Update the watch to be not in the cart
+            const cartWatch = await prisma.cartWatch.update({
+                where: {
+                    id: watch.id
+                },
+                data: {
+                    isInCart: false
+                }
+            })
+            // Reduce stock by 1
+            const updatedWatch = await prisma.watch.update({
+                where: {
+                    id: watch.watchId
+                },
+                data: {
+                    stock: {
+                        decrement: 1
+                    }
+                }
+            });
+        }
+        res.json(cart);
     } catch (err) {
         console.error('Error while updating cart', err.message);
         next(err);
