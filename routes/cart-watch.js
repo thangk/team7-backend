@@ -15,12 +15,14 @@ router.get('/cart-watches', async function(req, res, next)  {
     }
 })
 
-router.get('/cart-watches/:id', async function(req, res, next)  {
+// updated by Kap, this change returns the list of watches by cartId which is equal to customerId
+router.get('/cart-watches/:customerId', async function(req, res, next)  {
     try {
-        const cartWatch = await prisma.cartWatch.findUnique({
+        const cartWatch = await prisma.cartWatch.findMany({
             where: {
-                id: Number(req.params.id)
-            },
+                cartId: Number(req.params.customerId)
+                
+            }
         })
         res.json(cartWatch);
     } catch (err) {
@@ -70,7 +72,7 @@ router.delete('/cart-watches/:id', async function(req, res, next)  {
     }
 })
 
-router.delete('/cart-watches', async function(req, res, next)  {
+router.delete('/cart-watches/', async function(req, res, next)  {
     try {
         let deletedWatches= {}
         if(req.body.deleteAll) {
@@ -81,7 +83,7 @@ router.delete('/cart-watches', async function(req, res, next)  {
                 }
             })
         } else {
-            watchToDelete = await prisma.cartWatch.findFirst({
+            const watchToDelete = await prisma.cartWatch.findFirst({
                 where: {
                     cartId: Number(req.body.cartId),
                     watchId: Number(req.body.watchId),
@@ -89,7 +91,7 @@ router.delete('/cart-watches', async function(req, res, next)  {
             })
             deletedWatches = await prisma.cartWatch.delete({
                 where: {
-                    id: watchToDelete.id,
+                    id: watchToDelete?.id,
                 }
             })
         }

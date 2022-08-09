@@ -32,7 +32,9 @@ router.get('/login', async function(req, res, next)  {
 router.get('/customers', async function(req, res, next)  {
     try {
         const customers = await prisma.customer.findMany({
-            
+            include: {
+                cart: true
+            }
         })
         res.json(customers);
     } catch (err) {
@@ -95,9 +97,9 @@ router.patch('/customers/:id', async function(req, res, next)  {
                 id: Number(req.params.id)
             },
             data: req.body,
-            include: {
+            // include: {
                 
-            }
+            // }
         })
         res.json(customer);
     } catch (err) {
