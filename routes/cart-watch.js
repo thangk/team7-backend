@@ -43,11 +43,12 @@ router.post('/cart-watches', async function(req, res, next)  {
     }
 })
 
-router.patch('/cart-watches/:id', async function(req, res, next)  {
+router.patch('/cart-watches/:cartId', async function(req, res, next)  {
     try {
         const cartWatch = await prisma.cartWatch.update({
             where: {
-                id: Number(req.params.id)
+                cartId: Number(req.params.cartId),
+                watchId: Number(req.body.watchId),
             },
             data: req.body,
         })
@@ -57,6 +58,7 @@ router.patch('/cart-watches/:id', async function(req, res, next)  {
         next(err);
     }
 })
+
 
 router.delete('/cart-watches/:id', async function(req, res, next)  {
     try {
