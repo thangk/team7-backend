@@ -123,3 +123,6 @@ Content-Type: application/json
     "watchId": 6
 }
 
+###
+
+GET http://localhost:4000/watches/new-releases

@@ -34,6 +34,13 @@ router.get('/watches', async function(req, res, next)  {
     }
 })
 
+router.get('/watches/new-releases', async function(req, res, next)  {
+    let watches = await prisma.watch.findMany({
+    })
+    watches = watches.sort((a,b) => b.id-a.id).slice(0,5);
+    res.json(watches);
+})
+
 router.get('/watches/:id', async function(req, res, next)  {
     try {
         const watch = await prisma.watch.findUnique({
