@@ -4,13 +4,23 @@
 
 GET http://localhost:4000/customers
 
+
+###
+
+DELETE http://localhost:4000/customers/3
+
+
 ###
 
 GET http://localhost:4000/watches/4
 
 ###
 
-GET http://localhost:4000/cart-watches
+GET http://localhost:4000/cart-watches/6
+
+###
+
+GET http://localhost:4000/cart-watches/6
 
 
 ###
