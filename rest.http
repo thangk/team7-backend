@@ -33,12 +33,8 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:4000/cart-watches/5
+DELETE http://localhost:4000/watches/2
 Content-Type: application/json
-
-{
-    "watchId": 11
-}
 
 ###
 
